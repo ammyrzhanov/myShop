@@ -67,9 +67,14 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+const port = process.env.PORT || 5000;
+
+
 mongoose
   .connect(MONGODB_URI)
   .then(result=>{
-    app.listen(3000,console.log('server run'));
+    app.listen(port, () =>{
+      console.log(`Server started on port ${port}`);
+    });
   })
   .catch(err=>console.log(err));
