@@ -103,7 +103,7 @@ exports.postSignup = (req, res, next) => {
                             items: []
                         }
                     });
-                    user.save().then(result => {
+                    return user.save().then(result => {
                         console.log(result);
                         res.redirect('/login');
                     }).catch(err => console.log(err));

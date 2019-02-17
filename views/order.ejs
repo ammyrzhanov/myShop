@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Регистрация</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/shop-homepage.css" rel="stylesheet">
+  <link href="css/order.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Остров Знаний</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Продукты</a>
+                    </li>
+                    <%if(isAuthentificated) {%>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/cart">Корзина</a>
+                        </li>
+                    <li class="nav-item">
+                        <form action="/logout" method="post">
+                          <button type="submit" class="btn btn-link" id="btn-link">Выйти</button>
+                        </form>
+                      </li>
+                      <%} else if(isAuthentificatedAdmin) {%>
+                        <li class="nav-item active">
+                                <a class="nav-link" href="/order">Заказы</a>
+                              </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/admin">Администратор</a>
+                      </li>
+                      <li class="nav-item">
+                          <form action="/logout" method="post">
+                            <button type="submit" class="btn btn-link" id="btn-link">Выйти</button>
+                          </form>
+                        </li>
+                      <%}else {%>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/login">Войти</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/signup">Регистрация</a>
+                      </li>
+                      <%}%>
+                  </ul>
+      </div>
+    </div>
+  </nav>
+<br>
+<div class="container">
+<main>
+        <% if (orders.length <= 0) { %>
+            <h1>Nothing there!</h1>
+        <% } else { %>
+            <ul class="orders">
+                <% orders.forEach(order => { %>
+                    <li class="orders__item">
+                        <h1>Заказ - # <%= order._id %></h1>
+                        <ul class="orders__products">
+                            <% order.products.forEach(p => { %>
+                                <li class="orders__products-item"><%= p.product.title %> (<%= p.quantity %>)</li>
+                            <% }); %>
+                        </ul>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } %>
+</main>
+</div>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

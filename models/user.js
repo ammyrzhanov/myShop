@@ -19,11 +19,12 @@ const UserSchema=new Schema({
             productId:{
                 type:Schema.Types.ObjectId,
                 ref:'Product',
-                required:true
+            },
+            title:{
+                type:String
             },
             quantity:{
                 type:Number,
-                required:true
             }
         }]
     }

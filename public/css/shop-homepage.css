@@ -28,3 +28,6 @@ body {
   color: #7b848b;
   text-decoration: none;
 }
+.centered {
+  text-align: center;
+}

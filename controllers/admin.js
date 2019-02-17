@@ -10,7 +10,7 @@ exports.getAdmin=(req,res,next)=>{
             isAuthentificated:req.session.isLoggedIn,
             isAuthentificatedAdmin:req.session.isLoggedInAdmin
         });
-    console.log(isAuthentificated);
+    console.log(req.session.isLoggedInAdmin);
 
     })
     .catch(err=>console.log(err));

@@ -35,17 +35,17 @@ app.use(express.static(path.join(__dirname, 'public')));
     store:store
 }));
 
-// app.use((req, res, next) => {
-//   if(!req.session.user){
-//       return next();
-//   }
-//   User.findById(req.session.user._id)
-//       .then(user => {
-//           req.user = user;
-//           next();
-//       })
-//       .catch(err => console.log(err))
-// });
+app.use((req, res, next) => {
+  if(!req.session.user){
+      return next();
+  }
+  User.findById(req.session.user._id)
+      .then(user => {
+          req.user = user;
+          next();
+      })
+      .catch(err => console.log(err))
+});
 
 app.use(shopRoutes);
 app.use(adminRoutes);
